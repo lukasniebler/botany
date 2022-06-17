@@ -27,3 +27,7 @@ Temporary Items
 
 ### Node ###
 node_modules/
+
+# Composer
+composer.phar
+/vendor/
