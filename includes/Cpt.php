@@ -12,6 +12,7 @@ class Cpt
     public function __construct()
     {
         add_action('init', [$this, 'botanical_family_custom_post_type']);
+        $plugin_dir = WP_PLUGIN_DIR . '/botany';
     }
 
     public function botanical_family_custom_post_type()
