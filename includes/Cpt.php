@@ -9,11 +9,13 @@ defined('ABSPATH') || exit;
  */
 class Cpt
 {
-    public function __construct()
+    public function __construct($pluginFile)
     {
+        $this->pluginFile = $pluginFile;
         add_action('init', [$this, 'botanical_family_custom_post_type']);
-
         add_action('cmb2_admin_init', [$this, 'cmb2_sample_metaboxes']);
+
+        add_filter('single_template', [$this, 'includeSingleTemplate']);
     }
 
     public function botanical_family_custom_post_type()
@@ -87,5 +89,14 @@ class Cpt
             'options' => array(),
         ) );
 
+    }
+
+    public function includeSingleTemplate($singleTemplate) {
+        global $post;
+        switch ($post->post_type) {
+            case 'ln_botanical_family':
+                return dirname($this->pluginFile) . '/includes/Templates/single-ln_botanical_family.php'; 
+            }
+        return $singleTemplate;
     }
 }

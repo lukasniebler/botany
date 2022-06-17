@@ -143,5 +143,5 @@ function loaded()
         return;
     }
 
-    new Main;
+    new Main(__FILE__);
 }
